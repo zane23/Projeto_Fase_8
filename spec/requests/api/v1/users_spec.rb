@@ -3,19 +3,20 @@ require 'rails_helper'
 RSpec.describe 'Users API', type: :request do
     let!(:user) {create(:user)}
     let(:user_id) {user.id}
-
+    let(:headers){{"Accept" => "application/vnd.projetofase8.v1"}} #variavel que elimina os headers
+    
     before {host! "localhost:3000/api"}
 
     describe "GET user/:id" do
         before do
-            headers = {"Accept" => "application/vnd.projetofase8.v1"}
+            #headers = {"Accept" => "application/vnd.projetofase8.v1"} 
             get "/users/#{user_id}", params: {}, headers: headers
         end
 
         context "when the user exists" do
             it "returns the user" do
-                user_response = JSON.parse(response.body)
-                expect(user_response["id"]).to eq(user_id)
+                #user_response = JSON.parse(response.body)
+                expect(json_body["id"]).to eq(user_id)
             end
             it "returns status code 200" do
                 expect(response).to have_http_status(200)
@@ -35,7 +36,7 @@ RSpec.describe 'Users API', type: :request do
 
     describe "POST user/" do
         before do
-            headers = {"Accept" => "application/vnd.projetofase8.v1"}
+            #headers = {"Accept" => "application/vnd.projetofase8.v1"}
             post "/users/", params:{user: user_params}, headers: headers
         end
 
@@ -46,8 +47,8 @@ RSpec.describe 'Users API', type: :request do
                 expect(response).to have_http_status(201)
             end
             it "returns json data for the created user" do
-                user_response = JSON.parse(response.body)
-                expect(user_response['email']).to eq(user_params[:email])
+                #user_response = JSON.parse(response.body)
+                expect(json_body['email']).to eq(user_params[:email])
             end
         end
 
@@ -59,8 +60,8 @@ RSpec.describe 'Users API', type: :request do
             end
 
             it "returns the json data for the errors" do
-                user_response = JSON.parse(response.body)
-                expect(user_response).to have_key('errors')
+                #user_response = JSON.parse(response.body)
+                expect(json_body).to have_key('errors')
             end
 
         end
