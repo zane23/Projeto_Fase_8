@@ -65,7 +65,42 @@ RSpec.describe 'Users API', type: :request do
         end
     end
 
+<<<<<<< HEAD
    
+=======
+    describe "PUT user/:id" do
+        before do 
+            put "/users/#{user_id}", params:{user: user_params}, headers: headers
+        end
+
+        context "when the request params are valid" do
+            let(:user_params){{email: 'novo@email.com'}}
+
+            it "returns status code 200" do
+                expect(response).to have_http_status(200)
+            end
+
+            it "returns json data for the update user" do
+                expect(json_body['email']).to eq(user_params[:email])
+            end
+        end
+
+        context "when the request params are invalid" do
+            let(:user_params){{email: 'email_invalido@'}}
+
+            it "return status code 422" do
+                expect(response).to have_http_status(422)
+            end
+
+            it "return json data for the errors" do
+                expect(json_body).to have_key('errors')
+            end
+
+        end
+
+
+    end
+>>>>>>> adding-users
 
     describe "DELETE user/:id" do
         before do
