@@ -65,9 +65,6 @@ RSpec.describe 'Users API', type: :request do
         end
     end
 
-<<<<<<< HEAD
-   
-=======
     describe "PUT user/:id" do
         before do 
             put "/users/#{user_id}", params:{user: user_params}, headers: headers
@@ -100,7 +97,6 @@ RSpec.describe 'Users API', type: :request do
 
 
     end
->>>>>>> adding-users
 
     describe "DELETE user/:id" do
         before do
