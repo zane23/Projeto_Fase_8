@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Users API', type: :request do
     let!(:user) {create(:user)}
     let(:user_id) {user.id}
-    let(:headers){{"Accept" => "application/vnd.projetofase8.v1"}}
+    let(:headers){{"Accept" => "application/vnd.projetofase8.v1", "Authorization" => user.auth_token}}
     
     before {host! "localhost:3000/api"}
 
@@ -65,9 +65,6 @@ RSpec.describe 'Users API', type: :request do
         end
     end
 
-<<<<<<< HEAD
-   
-=======
     describe "PUT user/:id" do
         before do 
             put "/users/#{user_id}", params:{user: user_params}, headers: headers
@@ -100,7 +97,6 @@ RSpec.describe 'Users API', type: :request do
 
 
     end
->>>>>>> adding-users
 
     describe "DELETE user/:id" do
         before do
