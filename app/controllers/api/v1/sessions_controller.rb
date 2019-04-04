@@ -8,7 +8,7 @@ class Api::V1::SessionsController < ApplicationController
             user.save #salva token
             render json: user, status: 200 #retorna json com os valores adicionados
         else
-            render json: {errors: "Email ou Senha inválido"} status: 401 #retorna erro
+            render json: {errors: "Email ou Senha inválido"}, status: 401 #retorna erro
         end
 
     end
