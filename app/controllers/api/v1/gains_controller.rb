@@ -21,14 +21,14 @@ class Api::V1::GainsController < ApplicationController
     end
 
     def destroy
-        gain = current_user.gains.build(gain_params)
+        gain = current_user.gains(gain_params)
         gain.destroy
         head 204
     end
 
     def update
         gain = current_user.gains.find(params[:id])
-        if gain.update_attributtes(gain_params)
+        if gain.update_attributes(gain_params)
             render json: gain, status: 200
         else
             render json: {errors: gain.errors}, status: 422
