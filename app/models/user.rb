@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :auth_token
   before_create :generate_authentication_token!
   has_many :gains, dependent: :destroy
-  #has_many :outlays, dependent: :destroy 
+  has_many :outlays, dependent: :destroy
 
   def info
     "#{email} - #{created_at} - Token: #{Devise.friendly_token}"
@@ -20,5 +20,4 @@ class User < ApplicationRecord
     while User.exists?(auth_token: auth_token)
     end
   end
-
 end
