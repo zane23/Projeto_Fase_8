@@ -1,9 +1,9 @@
-class Api::V2::OutlayController < ApplicationController
+class Api::V2::OutlaysController < ApplicationController
   before_action :authenticate_with_token!
 
   def index
     outlays = current_user.outlays
-    render json: { outlays: outlays }, status: 200
+    render json: outlays, status: 200
   end
 
   def show
@@ -12,7 +12,7 @@ class Api::V2::OutlayController < ApplicationController
   end
 
   def create
-    outlay = current_user.outlays.build(gain_params)
+    outlay = current_user.outlays.build(outlay_params)
     if outlay.save
       render json: outlay, status: 201
     else
@@ -28,7 +28,7 @@ class Api::V2::OutlayController < ApplicationController
 
   def update
     outlay = current_user.outlays.find(params[:id])
-    if outlay.update_attributes(gain_params)
+    if outlay.update_attributes(outlay_params)
       render json: outlay, status: 200
     else
       render json: { errors: outlay.errors }, status: 422
@@ -37,7 +37,7 @@ class Api::V2::OutlayController < ApplicationController
 
   private
 
-  def gain_params
+  def outlay_params
     params.require(:outlay).permit(:description, :value, :date)
   end
 end
