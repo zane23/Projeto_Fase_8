@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+
+
 source 'https://rubygems.org'
 
 
@@ -123,6 +127,8 @@ end
 
 
 group :production do
+
+  gem 'pg', '~> 0.20'
 
 end
 

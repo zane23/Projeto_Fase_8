@@ -1,4 +1,4 @@
-class Api::V1::OutlayController < ApplicationController
+class Api::V1::OutlayController < BaseController
   before_action :authenticate_with_token!
 
   def index
