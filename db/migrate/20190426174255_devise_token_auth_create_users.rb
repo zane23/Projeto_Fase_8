@@ -16,7 +16,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.0]
       ## Rememberable
       # t.datetime :remember_created_at
 
-      # #Trackable
+      ##Trackable
       t.integer :sign_in_count, default: 0, null: false
       t.datetime :current_sign_in_at
       t.datetime :last_sign_in_at
@@ -43,10 +43,10 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.0]
       ## Tokens
       t.text :tokens
 
-      t.timestamps
+      # t.timestamps
     end
 
-    add_index :users, :email, unique: true
+    # add_index :users, :email, unique: true
     add_index :users, %i[uid provider], unique: true
     # add_index :users, :reset_password_token,unique: true
     # add_index :users, :confirmation_token, unique: true
